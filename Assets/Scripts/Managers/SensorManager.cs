@@ -10,10 +10,10 @@ public class SensorManager : MonoBehaviour
         towerController = GameObject.FindGameObjectWithTag("T_Towers").GetComponent<TowerController>();
     }
 
-    void OnTriggerStay(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         towerController.ShootOnSight();
+        print("asdf");
     }
-    
 }
 // When an object is in range, detect it and relay info to shoot > ontrigger enter/stay/exit
