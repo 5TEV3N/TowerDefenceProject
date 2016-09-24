@@ -7,8 +7,10 @@ public class TowerController : MonoBehaviour
     public Transform bulletExitPoint;
     public float bulletShootingForce;
 
-    public void ShootOnSight(GameObject drones)
+    public void ShootOnSight()
     {
+
+        /*
         GameObject bulletShoot = GameObject.Instantiate(bullet);    //Spawn bullet while enemies stay on your sensor
         bulletShoot.transform.position = bulletExitPoint.transform.position; //Spawn this bullet on the same transform as the gameobject that this script is attached
 
@@ -16,7 +18,6 @@ public class TowerController : MonoBehaviour
         shootingDirection.Normalize();
 
         bulletShoot.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletShootingForce, ForceMode.Impulse);
-
+        */
     }
-
 }
