@@ -8,6 +8,8 @@ public class SensorManager : MonoBehaviour
     TowerController towerController; // Reff to the TowerController Script
     public bool targetAcquired;
 
+    private GameObject targetedEnemy;
+
     void Awake()
     {
         towerController = GameObject.FindGameObjectWithTag("T_Towers").GetComponent<TowerController>();
@@ -18,8 +20,10 @@ public class SensorManager : MonoBehaviour
         if (drones.gameObject.tag == "T_Drones")
         {
             targetAcquired = true;
-            Fire();
+            targetedEnemy = drones.gameObject;
             print("Target Acquired");
+            Fire();
+            
         }
     }
 
@@ -28,13 +32,17 @@ public class SensorManager : MonoBehaviour
         if (drones.gameObject.tag == "T_Drones")
         {
             targetAcquired = false;
-            print("Target lost");
+            print("Target Lost");
+            if (targetAcquired == false)
+            {
+                targetedEnemy = null;
+            }
         }       
     }
 
     void Fire()
     {
-        if (towerController != null)
+        if (targetedEnemy != null)
         {
             if (targetAcquired == true)
             {
