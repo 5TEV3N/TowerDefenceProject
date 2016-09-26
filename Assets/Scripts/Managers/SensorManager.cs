@@ -15,15 +15,18 @@ public class SensorManager : MonoBehaviour
         towerController = GameObject.FindGameObjectWithTag("T_Towers").GetComponent<TowerController>();
     }
 
-    void OnTriggerStay(Collider drones)
+    void Update()
+    {
+        Fire();
+    }
+
+    void OnTriggerEnter(Collider drones)
     {
         if (drones.gameObject.tag == "T_Drones")
         {
             targetAcquired = true;
             targetedEnemy = drones.gameObject;
             print("Target Acquired");
-            Fire();
-            
         }
     }
 
