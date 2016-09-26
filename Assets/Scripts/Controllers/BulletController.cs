@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BulletController : MonoBehaviour
 {
+    //This scripts deletes the bullet after x amount of time
+
     public float timeBeforeDeath;
     public float intialTime;
 

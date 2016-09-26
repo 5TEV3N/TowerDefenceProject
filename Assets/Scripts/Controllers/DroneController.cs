@@ -7,7 +7,6 @@ public class DroneController : MonoBehaviour
     public float droneSpeedX; //float val of the drone's speed
     public float droneSpeedY;
     public float droneSpeedZ;
-    public float speedCheck;
 
     void FixedUpdate()
     {

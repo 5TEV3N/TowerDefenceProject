@@ -3,21 +3,26 @@ using System.Collections;
 
 public class TowerController : MonoBehaviour
 {
-    public GameObject bullet;
+    //Tower shoots
+    public GameObject bullets;
     public Transform bulletExitPoint;
     public float bulletShootingForce;
 
+    private GameObject drones;
+
+    void Awake()
+    {
+        drones = GameObject.FindGameObjectWithTag("T_Drones");
+    }
+
     public void ShootOnSight()
     {
-
-        /*
-        GameObject bulletShoot = GameObject.Instantiate(bullet);    //Spawn bullet while enemies stay on your sensor
-        bulletShoot.transform.position = bulletExitPoint.transform.position; //Spawn this bullet on the same transform as the gameobject that this script is attached
+        GameObject bulletShoot = GameObject.Instantiate(bullets) as GameObject;
+        bulletShoot.transform.position = bulletExitPoint.transform.position;
 
         Vector3 shootingDirection = drones.transform.position - bulletExitPoint.transform.position;
         shootingDirection.Normalize();
 
         bulletShoot.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletShootingForce, ForceMode.Impulse);
-        */
     }
 }
