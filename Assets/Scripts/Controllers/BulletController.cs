@@ -5,8 +5,8 @@ public class BulletController : MonoBehaviour
 {
     //This scripts deletes the bullet after x amount of time
 
-    public float timeBeforeDeath;
-    public float intialTime;
+    public float timeBeforeDeath;   //  Time before it destroys itself
+    public float intialTime;        //  Self explanatory
 
     void Start()
     {

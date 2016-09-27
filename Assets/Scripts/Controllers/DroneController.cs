@@ -3,13 +3,31 @@ using System.Collections;
 
 public class DroneController : MonoBehaviour
 {
-    public Rigidbody rb; //Gets obj's rigidbody
-    public float droneSpeedX; //float val of the drone's speed
-    public float droneSpeedY;
-    public float droneSpeedZ;
+    //This script deals with the drones directly
+
+    public Rigidbody rb;                    // Access the Rigidbody component
+    public float droneSpeed;                // Speed of drone
+    public int droneHealth;                 // Drone's health
+    public int howMuchDmgCanDroneTake;      // Damage taken
 
     void FixedUpdate()
     {
-        rb.AddForce(droneSpeedX, droneSpeedY, droneSpeedZ);
+        rb.AddForce(transform.right * droneSpeed);
+        print(droneHealth);
+    }
+    public void OnCollisionEnter(Collision bullet)
+    {
+        if (bullet.gameObject.tag == "T_Bullets")
+        {
+            droneHealth = droneHealth - howMuchDmgCanDroneTake;
+            if (droneHealth == 0)
+            {
+                if (bullet.gameObject.tag == "T_Bullets")
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+        }
     }
 }

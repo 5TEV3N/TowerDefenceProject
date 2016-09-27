@@ -3,41 +3,31 @@ using System.Collections;
 
 public class TowerController : MonoBehaviour
 {
-    //Tower shoots
-    SensorManager sensorManager;
+    //This script shoots out the bullets
+    SensorManager sensorManager;            // Refference to the SensorManager
 
-    public GameObject bullets;
-    public Transform bulletExitPoint;
-    public float bulletShootingForce;
+    public GameObject bullets;              // Receives the bullets prefab
+    public Transform bulletExitPoint;       // The position of where the bullets exit from
+    public float bulletShootingForce;       // The power of bullets that shoot out 
+    public GameObject shootingArea;         // Where the bullet is shooting
 
-    private GameObject drones;
-    private GameObject bulletShoot;
-    private Vector3 dronePosition;
-    private Vector3 shootingDirection;
+    private GameObject bulletShoot;         // Instantiated prefab bullet 
+    private Vector3 shootingDirection;      // Where the bullet is shooting towards
 
     void Awake()
     {
-        drones = GameObject.FindGameObjectWithTag("T_Drones");
-        dronePosition = drones.transform.position;
         sensorManager = GameObject.FindGameObjectWithTag("T_Sensor").GetComponent<SensorManager>();
     }
 
-    void Update()
-    {
-        bulletExitPoint.LookAt(dronePosition);
-        if (sensorManager.targetAcquired == true)
-        {
-            ShootOnSight();
-        }
-    }
 
     public void ShootOnSight()
     {
-            bulletShoot = GameObject.Instantiate(bullets) as GameObject;
-            bulletShoot.transform.position = bulletExitPoint.transform.position;
+        bulletShoot = GameObject.Instantiate(bullets) as GameObject;
+        bulletShoot.transform.position = bulletExitPoint.transform.position;
 
-            //shootingDirection = drones.transform.position - bulletExitPoint.transform.position;
-            //shootingDirection.Normalize();
-            bulletShoot.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletShootingForce, ForceMode.Impulse);
+        shootingDirection = shootingArea.transform.position - bulletExitPoint.transform.position;
+        shootingDirection.Normalize();
+        bulletShoot.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletShootingForce, ForceMode.Impulse);
     }
+
 }

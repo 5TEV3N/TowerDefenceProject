@@ -5,10 +5,9 @@ public class SensorManager : MonoBehaviour
 {
     //This script detects when a drone comes by, then relays info the the tower controller
 
-    TowerController towerController; // Reff to the TowerController Script
-    public bool targetAcquired;
-
-    private GameObject targetedEnemy;
+    TowerController towerController;        // Refference to the SensorManager
+    public GameObject targetedEnemy;        // When a drone enters the trigger zone, mark them
+    public bool targetAcquired;             // Checks if the targer is in the triggerzone
 
     void Awake()
     {
