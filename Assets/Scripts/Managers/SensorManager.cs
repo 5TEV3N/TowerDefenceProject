@@ -19,6 +19,17 @@ public class SensorManager : MonoBehaviour
         Fire();
     }
 
+    void Fire()
+    {
+        if (targetedEnemy != null)
+        {
+            if (targetAcquired == true)
+            {
+                towerController.ShootOnSight();
+            }
+        }
+    }
+
     void OnTriggerEnter(Collider drones)
     {
         if (drones.gameObject.tag == "T_Drones")
@@ -34,22 +45,11 @@ public class SensorManager : MonoBehaviour
         if (drones.gameObject.tag == "T_Drones")
         {
             targetAcquired = false;
-            print("Target Lost");
             if (targetAcquired == false)
             {
                 targetedEnemy = null;
             }
+            print("Target Lost");
         }       
-    }
-
-    void Fire()
-    {
-        if (targetedEnemy != null)
-        {
-            if (targetAcquired == true)
-            {
-                towerController.ShootOnSight();
-            }
-        }
     }
 }

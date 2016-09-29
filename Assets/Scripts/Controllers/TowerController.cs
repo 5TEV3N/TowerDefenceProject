@@ -6,24 +6,53 @@ public class TowerController : MonoBehaviour
     //This script shoots out the bullets
     SensorManager sensorManager;            // Refference to the SensorManager
 
+    public GameObject targetedEnemy;        // When a drone enters the trigger zone, mark them
+    public bool targetAcquired;             // Checks if the targer is in the triggerzone
+
     public GameObject bullets;              // Receives the bullets prefab
+    public GameObject shootingArea;         // Where the bullet is shooting
     public Transform bulletExitPoint;       // The position of where the bullets exit from
     public float bulletShootingForce;       // The power of bullets that shoot out 
-    public GameObject shootingArea;         // Where the bullet is shooting
 
     private GameObject bulletShoot;         // Instantiated prefab bullet 
     private Vector3 shootingDirection;      // Where the bullet is shooting towards
 
-    void Awake()
+    void Update()
     {
-        sensorManager = GameObject.FindGameObjectWithTag("T_Sensor").GetComponent<SensorManager>();
+        Fire();
     }
 
-    void OnCollisionEnter(Collision drones)
+    void Fire()
+    {
+        if (targetedEnemy != null)
+        {
+            if (targetAcquired == true)
+            {
+                ShootOnSight();
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider drones)
     {
         if (drones.gameObject.tag == "T_Drones")
         {
-            Destroy(gameObject);
+            targetAcquired = true;
+            targetedEnemy = drones.gameObject;
+            print("Target Acquired");
+        }
+    }
+
+    void OnTriggerExit(Collider drones)
+    {
+        if (drones.gameObject.tag == "T_Drones")
+        {
+            targetAcquired = false;
+            if (targetAcquired == false)
+            {
+                targetedEnemy = null;
+            }
+            print("Target Lost");
         }
     }
 
@@ -36,5 +65,4 @@ public class TowerController : MonoBehaviour
         shootingDirection.Normalize();
         bulletShoot.GetComponent<Rigidbody>().AddForce(shootingDirection * bulletShootingForce, ForceMode.Impulse);
     }
-
 }

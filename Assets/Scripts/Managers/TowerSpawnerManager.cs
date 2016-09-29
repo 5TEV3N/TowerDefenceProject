@@ -5,7 +5,6 @@ public class TowerSpawnerManager : MonoBehaviour
 {
     //When the spawners are clicked on, spawn a tower. BUT player must have the sufficient resources
 
-    public GameObject towerSpawn;       // Receives tower prefab
     public Transform first;             // Position of first tower spawner
     public Transform mid;               // Position of mid tower spawner
     public Transform last;              // Position of last tower spawner
@@ -17,8 +16,7 @@ public class TowerSpawnerManager : MonoBehaviour
     private RaycastHit hit;             // Gets info from the raycast
     private Ray ray;                    // Ray that gathers info
     private Vector3 rayOrigin;          // Position of ray 
-
-
+    private GameObject towerSpawn;      // Receives tower prefab
 
     void Awake()
     {
@@ -45,6 +43,7 @@ public class TowerSpawnerManager : MonoBehaviour
                         towerSpawn.transform.SetParent(first);
                         towerSpawn.transform.position = first.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
                         canSpawnFirst = false;
+
                     }
                     else
                     {
