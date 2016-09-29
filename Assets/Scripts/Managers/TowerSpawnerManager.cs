@@ -12,9 +12,9 @@ public class TowerSpawnerManager : MonoBehaviour
     public bool placed;                 // If tower is placed = don't spawn
 
 
-    private RaycastHit hit;             //
-    private Ray ray;                    //
-    private Vector3 rayOrigin;          //
+    private RaycastHit hit;             // Gets info from the raycast
+    private Ray ray;                    // Ray that gathers info
+    private Vector3 rayOrigin;          // Position of ray 
 
 
 
@@ -38,7 +38,7 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     print("first");
                     towerSpawn = Instantiate(towerSpawn);
-                    towerSpawn.transform.SetParent(first);
+                    towerSpawn.transform.SetParent(first); // makes this true/false
                     towerSpawn.transform.position = first.transform.position + new Vector3 (0,towerSpawn.transform.position.y,0);
                 }
 
@@ -46,7 +46,7 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     print("mid");
                     towerSpawn = Instantiate(towerSpawn);
-                    towerSpawn.transform.SetParent(mid);
+                    towerSpawn.transform.SetParent(mid); // makes this true/false
                     towerSpawn.transform.position = mid.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
                 }
 
@@ -54,7 +54,7 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     print("last");
                     towerSpawn = Instantiate(towerSpawn);
-                    towerSpawn.transform.SetParent(last);
+                    towerSpawn.transform.SetParent(last); // makes this true/false
                     towerSpawn.transform.position = last.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
                 }
             }
