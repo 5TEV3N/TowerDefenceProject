@@ -19,6 +19,13 @@ public class TowerController : MonoBehaviour
         sensorManager = GameObject.FindGameObjectWithTag("T_Sensor").GetComponent<SensorManager>();
     }
 
+    void OnCollisionEnter(Collision drones)
+    {
+        if (drones.gameObject.tag == "T_Drones")
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void ShootOnSight()
     {

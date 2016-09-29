@@ -9,8 +9,10 @@ public class TowerSpawnerManager : MonoBehaviour
     public Transform first;             // Position of first tower spawner
     public Transform mid;               // Position of mid tower spawner
     public Transform last;              // Position of last tower spawner
-    public bool placed;                 // If tower is placed = don't spawn
 
+    public bool canSpawnFirst;          // If tower is placed on the first spawner = don't spawn
+    public bool canSpawnMid;            // If tower is placed on the mid spawner = don't spawn
+    public bool canSpawnLast;           // If tower is placed on the last spawner = don't spawn
 
     private RaycastHit hit;             // Gets info from the raycast
     private Ray ray;                    // Ray that gathers info
@@ -36,26 +38,50 @@ public class TowerSpawnerManager : MonoBehaviour
             {
                 if (hit.collider.CompareTag("T_First"))
                 {
-                    print("first");
-                    towerSpawn = Instantiate(towerSpawn);
-                    towerSpawn.transform.SetParent(first); // makes this true/false
-                    towerSpawn.transform.position = first.transform.position + new Vector3 (0,towerSpawn.transform.position.y,0);
+                    if (canSpawnFirst == true)
+                    {
+                        print("first");
+                        towerSpawn = Instantiate(Resources.Load("Tower")) as GameObject;
+                        towerSpawn.transform.SetParent(first);
+                        towerSpawn.transform.position = first.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
+                        canSpawnFirst = false;
+                    }
+                    else
+                    {
+                        print("A Tower is already placed here!");
+                    }
                 }
 
                 if (hit.collider.CompareTag("T_Mid"))
                 {
-                    print("mid");
-                    towerSpawn = Instantiate(towerSpawn);
-                    towerSpawn.transform.SetParent(mid); // makes this true/false
-                    towerSpawn.transform.position = mid.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
+                    if (canSpawnMid == true)
+                    {
+                        print("mid");
+                        towerSpawn = Instantiate(Resources.Load("Tower")) as GameObject;
+                        towerSpawn.transform.SetParent(mid);
+                        towerSpawn.transform.position = mid.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
+                        canSpawnMid = false;
+                    }
+
+                    else
+                    {
+                        print("A Tower is already placed here!");
+                    }
                 }
 
                 if (hit.collider.CompareTag("T_Last"))
                 {
-                    print("last");
-                    towerSpawn = Instantiate(towerSpawn);
-                    towerSpawn.transform.SetParent(last); // makes this true/false
-                    towerSpawn.transform.position = last.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
+                    if (canSpawnLast == true)
+                    {
+                        towerSpawn = Instantiate(Resources.Load("Tower")) as GameObject;
+                        towerSpawn.transform.SetParent(last);
+                        towerSpawn.transform.position = last.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
+                        canSpawnLast = false;
+                    }
+                    else
+                    {
+                        print("A Tower is already placed here!");
+                    }
                 }
             }
         }
