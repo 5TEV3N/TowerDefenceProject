@@ -4,7 +4,6 @@ using System.Collections;
 public class TowerController : MonoBehaviour
 {
     //This script shoots out the bullets
-    SensorManager sensorManager;            // Refference to the SensorManager
 
     public GameObject targetedEnemy;        // When a drone enters the trigger zone, mark them
     public bool targetAcquired;             // Checks if the targer is in the triggerzone

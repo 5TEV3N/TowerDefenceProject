@@ -38,7 +38,7 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     if (canSpawnFirst == true)
                     {
-                        print("first");
+                        print("Tower Spawned in the First Marker");
                         towerSpawn = Instantiate(Resources.Load("Tower")) as GameObject;
                         towerSpawn.transform.SetParent(first);
                         towerSpawn.transform.position = first.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
@@ -55,7 +55,7 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     if (canSpawnMid == true)
                     {
-                        print("mid");
+                        print("Tower Spawned in the Mid Marker");
                         towerSpawn = Instantiate(Resources.Load("Tower")) as GameObject;
                         towerSpawn.transform.SetParent(mid);
                         towerSpawn.transform.position = mid.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
@@ -72,6 +72,7 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     if (canSpawnLast == true)
                     {
+                        print("Tower Spawned in the Last Marker");
                         towerSpawn = Instantiate(Resources.Load("Tower")) as GameObject;
                         towerSpawn.transform.SetParent(last);
                         towerSpawn.transform.position = last.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
