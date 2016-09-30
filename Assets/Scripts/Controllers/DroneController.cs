@@ -6,9 +6,9 @@ public class DroneController : MonoBehaviour
     //This script deals with the drones directly.  Increases speed as game goes on
 
     DroneManager droneManager;              // Refference to the DroneManager
+
     public Rigidbody rb;                    // Access the Rigidbody component
     public float droneSpeed;                // Speed of drone
-    public float droneSpeedUp;              // Speeds up the drone after certain criterias are met
     public int droneHealth;                 // Drone's health
     public int howMuchDmgCanDroneTake;      // Damage taken
 
@@ -20,6 +20,7 @@ public class DroneController : MonoBehaviour
     void Awake()
     {
         droneManager = GameObject.FindGameObjectWithTag("T_DronesManager").GetComponent<DroneManager>();
+        droneManager.ifDroneisInScene = true;
     }
 
     public void OnCollisionEnter(Collision bullet)
@@ -41,6 +42,8 @@ public class DroneController : MonoBehaviour
 
     public void SpeedUp()
     {
-
+        //droneSpeed = droneSpeed + 0.5f;
+        //Find away to change the prefab here
+        // manager control speed >  when enemy spawns,  get speed from manager
     }
 }

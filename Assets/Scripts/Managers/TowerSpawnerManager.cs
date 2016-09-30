@@ -27,7 +27,6 @@ public class TowerSpawnerManager : MonoBehaviour
     {
         rayOrigin = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //Debug.DrawRay(rayOrigin, ray.direction * 1000, Color.magenta);    // For testing only
         Physics.Raycast(ray, out hit, 1000f);
 
         if (Input.GetMouseButtonDown(0))
