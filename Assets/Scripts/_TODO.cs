@@ -7,10 +7,10 @@ public class _TODO : MonoBehaviour
      * Due october 6 
      * 
      * Must haves:
-     * Enemies passing through "warzone"    10
-     * Enemy detection  10
-     * Tower shoots at detected enemies 20
-     * Enemies can be killed    10
+     * Enemies passing through "warzone"    10 x
+     * Enemy detection  10 x
+     * Tower shoots at detected enemies 20 x
+     * Enemies can be killed    10 x
      * Game logic = Win/Lose    10
      * 
      * Nice to haves:
