@@ -19,7 +19,7 @@ public class DroneController : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(transform.right * droneManager.droneSpeed);
-        print("Drone Speed is now : " + droneManager.droneSpeed);
+        //print("Drone Speed is now : " + droneManager.droneSpeed);
     }
 
     public void OnCollisionEnter(Collision bullet)

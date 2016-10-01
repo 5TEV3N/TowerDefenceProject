@@ -44,6 +44,7 @@ public class DroneManager : MonoBehaviour
         {
             print("Reset Killed Counter. On to the next wave!");
             droneSpeed = droneSpeed + 5f;
+            spawnTime--;
             dronesKilled = 0;
         }
     }
