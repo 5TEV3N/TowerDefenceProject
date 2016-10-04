@@ -5,20 +5,27 @@ public class TowerController : MonoBehaviour
 {
     //This script shoots out the bullets
 
-    public GameObject targetedEnemy;        // When a drone enters the trigger zone, mark them
-    public bool targetAcquired;             // Checks if the targer is in the triggerzone
+    TowerSpawnerManager towerSpawnerManager;    // Refference to the towerSpawnerManager
 
-    public GameObject bullets;              // Receives the bullets prefab
-    public GameObject shootingArea;         // Where the bullet is shooting
-    public Transform bulletExitPoint;       // The position of where the bullets exit from
-    public float bulletShootingForce;       // The power of bullets that shoot out 
-
-    private GameObject bulletShoot;         // Instantiated prefab bullet 
-    private Vector3 shootingDirection;      // Where the bullet is shooting towards
+    public GameObject targetedEnemy;            // When a drone enters the trigger zone, mark them
+    public bool targetAcquired;                 // Checks if the targer is in the triggerzone
+                                                
+    public GameObject bullets;                  // Receives the bullets prefab
+    public GameObject shootingArea;             // Where the bullet is shooting
+    public Transform bulletExitPoint;           // The position of where the bullets exit from
+    public float bulletShootingForce;           // The power of bullets that shoot out 
+                                                
+    private GameObject bulletShoot;             // Instantiated prefab bullet 
+    private Vector3 shootingDirection;          // Where the bullet is shooting towards
 
     void Update()
     {
         Fire();
+    }
+
+    void Awake()
+    {
+        towerSpawnerManager = GameObject.FindGameObjectWithTag("T_TowerSpawnerManager").GetComponent<TowerSpawnerManager>();
     }
 
     void Fire()
@@ -30,6 +37,31 @@ public class TowerController : MonoBehaviour
                 ShootOnSight();
             }
         }
+    }
+
+    void OnCollisionEnter(Collision drones)
+    {
+        if (drones.gameObject.tag == "T_Drones" && gameObject.tag == "T_TowerFirst")
+        {
+            print("bye");
+            towerSpawnerManager.canSpawnFirst = true;
+            Destroy(gameObject);
+        }
+
+        if (drones.gameObject.tag == "T_Drones" && gameObject.tag == "T_TowerMid")
+        {
+            print("bye");
+            towerSpawnerManager.canSpawnMid = true;
+            Destroy(gameObject);
+        }
+
+        if (drones.gameObject.tag == "T_Drones" && gameObject.tag == "T_TowerLast")
+        {
+            print("bye");
+            towerSpawnerManager.canSpawnLast = true;
+            Destroy(gameObject);
+        }
+
     }
 
     void OnTriggerEnter(Collider drones)

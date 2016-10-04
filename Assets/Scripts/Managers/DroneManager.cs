@@ -8,6 +8,7 @@ public class DroneManager : MonoBehaviour
     DroneController droneController;              // Refference to the DroneController
 
     public int dronesKilled;                      // Counts how many drones are killed
+    public int dronesRequired;                    // How much drones must be killed inorder to go faster
     public float droneSpeed;                      // Speed of the drones
 
     public float spawnTime = 5f;                  // The amount of time between each spawn.
@@ -27,7 +28,7 @@ public class DroneManager : MonoBehaviour
 
     public void Spawn()
     {
-        GameObject cloneSpawn = Instantiate(drones) as GameObject;  // no idea why i need to do it this way.
+        GameObject cloneSpawn = Instantiate(drones) as GameObject;  
         cloneSpawn.name = "Drone";
         cloneSpawn.transform.position = gameObject.transform.position + new Vector3 (0, cloneSpawn.transform.position.y,0);
     }
@@ -40,7 +41,7 @@ public class DroneManager : MonoBehaviour
 
     public void IncreasingDifficulty()
     {
-        if (dronesKilled == 2)
+        if (dronesKilled == dronesRequired)
         {
             print("Reset Killed Counter. On to the next wave!");
             droneSpeed = droneSpeed + 5f;
