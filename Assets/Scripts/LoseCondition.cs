@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LoseCondition : MonoBehaviour
 {
     // If 3 drones hit the base, gameover!
 
-    DroneController droneController;         //Reffernce to the DroneController
+    DroneController droneController;         // Reffernce to the DroneController
 
-    public GameObject GameOverText;
-    public int damagedBase;                    // How many times the base got damaged
-
+    public int baseHealth;                   // Health of the base
 
     public void GameOver()
     {
-        damagedBase++;
-        if (damagedBase == 5)
+        baseHealth--;
+        print("Base took a hit!");
+        if (baseHealth <= 0)
         {
-            GameOverText.SetActive(true);
+            print("GameOver, go to the Lose Scene");
         }
     }
 }

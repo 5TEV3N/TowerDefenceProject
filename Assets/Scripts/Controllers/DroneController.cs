@@ -41,7 +41,6 @@ public class DroneController : MonoBehaviour
         }
         if (other.gameObject.tag == "T_Base")
         {
-            print("asdf");
             loseCondition.GameOver();
             Destroy(gameObject);
         }
