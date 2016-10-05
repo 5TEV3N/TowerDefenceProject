@@ -7,15 +7,18 @@ public class DroneManager : MonoBehaviour
 
     DroneController droneController;              // Refference to the DroneController
 
+    [Header("Difficulty")]
     public int dronesKilled;                      // Counts how many drones are killed
     public int dronesRequired;                    // How much drones must be killed inorder to go faster
+    public int healthIncrease;                    // How much drone's Health increases
     public float droneSpeed;                      // Speed of the drones
 
+    [Header("Spawn")]
     public float spawnTime = 5f;                  // The amount of time between each spawn.
     public float spawnDelay = 3f;                 // The amount of time before spawning starts.
 
     public GameObject drones;                     // Drones that get spawned
-    
+
     void Start()
     {
         InvokeRepeating("Spawn", spawnDelay, spawnTime);
@@ -44,7 +47,7 @@ public class DroneManager : MonoBehaviour
         if (dronesKilled == dronesRequired)
         {
             print("Reset Killed Counter. On to the next wave!");
-            droneSpeed = droneSpeed + 5f;
+            droneSpeed = droneSpeed + 0.5f;
             spawnTime--;
             dronesKilled = 0;
         }
