@@ -10,7 +10,7 @@ public class DroneManager : MonoBehaviour
     [Header("Difficulty")]
     public int dronesKilled;                      // Counts how many drones are killed
     public int dronesRequired;                    // How much drones must be killed inorder to go faster
-    public int healthIncrease;                    // How much drone's Health increases
+    public float speedIncrease;                   // How much drone's Health increases
     public float droneSpeed;                      // Speed of the drones
 
     [Header("Spawn")]
@@ -47,7 +47,7 @@ public class DroneManager : MonoBehaviour
         if (dronesKilled == dronesRequired)
         {
             print("Reset Killed Counter. On to the next wave!");
-            droneSpeed = droneSpeed + 0.5f;
+            droneSpeed = droneSpeed + speedIncrease;
             spawnTime--;
             dronesKilled = 0;
         }
