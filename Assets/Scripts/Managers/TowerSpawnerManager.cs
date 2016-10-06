@@ -5,6 +5,8 @@ public class TowerSpawnerManager : MonoBehaviour
 {
     //When the spawners are clicked on, spawn a tower. BUT player must have the sufficient resources
 
+    BaseManager baseManager;            // Refference to the baseManager
+
     public Transform first;             // Position of first tower spawner
     public Transform mid;               // Position of mid tower spawner
     public Transform last;              // Position of last tower spawner
@@ -20,7 +22,7 @@ public class TowerSpawnerManager : MonoBehaviour
 
     void Awake()
     {
-        //Get the refference of the base to see how much points the player can spend 
+        baseManager = GameObject.FindGameObjectWithTag("T_Base").GetComponent<BaseManager>();    
     }
 
     void Update()
@@ -37,12 +39,15 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     if (canSpawnFirst == true)
                     {
-                        print("Tower Spawned in the First Marker");
-                        towerSpawn = Instantiate(Resources.Load("TowerFirst")) as GameObject;
-                        towerSpawn.transform.SetParent(first);
-                        towerSpawn.transform.position = first.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
-                        canSpawnFirst = false;
-
+                        if (baseManager.playerResource >= 100)
+                        {
+                            print("Tower Spawned in the First Marker");
+                            towerSpawn = Instantiate(Resources.Load("TowerFirst")) as GameObject;
+                            towerSpawn.transform.SetParent(first);
+                            towerSpawn.transform.position = first.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
+                            canSpawnFirst = false;
+                            baseManager.playerResource = baseManager.playerResource - 100;
+                        }
                     }
                     else
                     {
@@ -54,11 +59,15 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     if (canSpawnMid == true)
                     {
-                        print("Tower Spawned in the Mid Marker");
-                        towerSpawn = Instantiate(Resources.Load("TowerMid")) as GameObject;
-                        towerSpawn.transform.SetParent(mid);
-                        towerSpawn.transform.position = mid.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
-                        canSpawnMid = false;
+                        if (baseManager.playerResource >= 50)
+                        {
+                            print("Tower Spawned in the Mid Marker");
+                            towerSpawn = Instantiate(Resources.Load("TowerMid")) as GameObject;
+                            towerSpawn.transform.SetParent(mid);
+                            towerSpawn.transform.position = mid.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
+                            canSpawnMid = false;
+                            baseManager.playerResource = baseManager.playerResource - 50;
+                        }
                     }
 
                     else
@@ -71,11 +80,11 @@ public class TowerSpawnerManager : MonoBehaviour
                 {
                     if (canSpawnLast == true)
                     {
-                        print("Tower Spawned in the Last Marker");
-                        towerSpawn = Instantiate(Resources.Load("TowerLast")) as GameObject;
-                        towerSpawn.transform.SetParent(last);
-                        towerSpawn.transform.position = last.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
-                        canSpawnLast = false;
+                            print("Tower Spawned in the Last Marker");
+                            towerSpawn = Instantiate(Resources.Load("TowerLast")) as GameObject;
+                            towerSpawn.transform.SetParent(last);
+                            towerSpawn.transform.position = last.transform.position + new Vector3(0, towerSpawn.transform.position.y, 0);
+                            canSpawnLast = false;
                     }
                     else
                     {

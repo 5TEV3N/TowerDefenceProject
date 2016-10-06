@@ -48,21 +48,18 @@ public class TowerController : MonoBehaviour
     {
         if (drones.gameObject.tag == "T_Drones" && gameObject.tag == "T_TowerFirst")
         {
-            print("bye");
             towerSpawnerManager.canSpawnFirst = true;
             Destroy(gameObject);
         }
 
         if (drones.gameObject.tag == "T_Drones" && gameObject.tag == "T_TowerMid")
         {
-            print("bye");
             towerSpawnerManager.canSpawnMid = true;
             Destroy(gameObject);
         }
 
         if (drones.gameObject.tag == "T_Drones" && gameObject.tag == "T_TowerLast")
         {
-            print("bye");
             towerSpawnerManager.canSpawnLast = true;
             Destroy(gameObject);
         }
@@ -75,7 +72,6 @@ public class TowerController : MonoBehaviour
         {
             targetAcquired = true;
             targetedEnemy = drones.gameObject;
-            print("Target Acquired");
             ShootOnSight();
         }
     }
@@ -89,7 +85,6 @@ public class TowerController : MonoBehaviour
             {
                 targetedEnemy = null;
             }
-            print("Target Lost");
         }
     }
 
